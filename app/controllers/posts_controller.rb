@@ -2,6 +2,10 @@ class PostsController < ApplicationController
   def index
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+  
   def new
     @post = Post.new
   end
@@ -13,5 +17,11 @@ class PostsController < ApplicationController
     else
       render :new
     end
+  end
+
+  private
+  
+  def post_params
+    params.require(:post).permit(:title, :caption)
   end
 end
